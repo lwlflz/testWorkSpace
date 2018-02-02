@@ -1,0 +1,27 @@
+package com.liuwei.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.liuwei.service.EmpService;
+import com.liuwei.testEntity.Emp;
+
+public class EmpServiceImpl implements EmpService{
+
+	@Autowired
+	private EmpDao empDao;
+	
+	@Override
+	public List<Emp> selectAllEmp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void testTransation() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

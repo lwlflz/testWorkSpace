@@ -1,0 +1,6 @@
+1517470521548	Extract local variable 'principal'
+1517472184825	Move 'login.jsp' to 'jsp'
+1517472186920	Move 'loginOut.jsp' to 'jsp'
+1517472189018	Move 'welcome.jsp' to 'jsp'
+1517472191241	Move 'index.jsp' to 'jsp'
+1517475016696	Move 'welcome.jsp' to 'WebContent'

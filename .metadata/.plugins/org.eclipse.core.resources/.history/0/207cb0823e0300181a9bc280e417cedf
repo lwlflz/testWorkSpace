@@ -1,0 +1,7 @@
+package com.liuwei.servlet;
+
+import javax.servlet.http.HttpServlet;
+
+public class DemoTestServlet extends HttpServlet{
+
+}

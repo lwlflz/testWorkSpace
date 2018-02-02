@@ -1,0 +1,7 @@
+package com.liuwei.service.impl;
+
+import com.liuwei.service.EmpService;
+
+public class EmpServiceImpl implements EmpService{
+
+}

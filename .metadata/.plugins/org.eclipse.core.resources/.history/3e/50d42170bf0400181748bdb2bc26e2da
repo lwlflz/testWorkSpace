@@ -1,0 +1,30 @@
+package com.liuwei;
+
+import org.junit.Test;
+
+public class TestDao {
+
+	@Test
+	public void test() {
+		  String URL="jdbc:mysql://127.0.0.1:3306/imooc?useUnicode=true&amp;characterEncoding=utf-8";
+		  14         String USER="root";
+		  15         String PASSWORD="tiger";
+		  16         //1.加载驱动程序
+		  17         Class.forName("com.mysql.jdbc.Driver");
+		  18         //2.获得数据库链接
+		  19         Connection conn=DriverManager.getConnection(URL, USER, PASSWORD);
+		  20         //3.通过数据库的连接操作数据库，实现增删改查（使用Statement类）
+		  21         Statement st=conn.createStatement();
+		  22         ResultSet rs=st.executeQuery("select * from user");
+		  23         //4.处理数据库的返回结果(使用ResultSet类)
+		  24         while(rs.next()){
+		  25             System.out.println(rs.getString("user_name")+" "
+		  26                           +rs.getString("user_password"));
+		  27         }
+		  28         
+		  29         //关闭资源
+		  30         rs.close();
+		  31         st.close();
+		  32         conn.close();
+	}
+}

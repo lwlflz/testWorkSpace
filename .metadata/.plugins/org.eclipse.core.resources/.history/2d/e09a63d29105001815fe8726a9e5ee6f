@@ -1,0 +1,9 @@
+package com.liuwei.dao;
+
+import java.util.List;
+
+import com.liuwei.testEntity.Emp;
+
+public interface EmpDao {
+	List<Emp> getAllUser();
+}

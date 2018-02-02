@@ -1,0 +1,28 @@
+package com.liuwei;
+
+import org.junit.Test;
+
+public class TestMybatis {
+	@Test
+	public void test() {
+		  String resource = "mybatis-config.xml";
+	        InputStream inputStream = Resources.getResourceAsStream(resource);
+	        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder()
+	                .build(inputStream);
+
+	        SqlSession session = sqlSessionFactory.openSession();
+	        try {
+
+	            List<User> userlist = session
+	                    .selectList("com.elements.user.mapper.getAllUser");
+
+	            System.out.print(userlist);
+
+	        }catch(Exception e){
+	            System.out.print(e);
+	        }
+	        finally {
+	            session.close();
+	        }
+	}
+}

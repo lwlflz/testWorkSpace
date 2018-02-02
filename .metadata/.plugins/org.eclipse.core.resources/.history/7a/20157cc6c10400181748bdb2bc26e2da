@@ -1,0 +1,8 @@
+package resource;
+
+public class Snippet {
+	public static void main(String[] args) {
+		jdbc.properties
+	}
+}
+

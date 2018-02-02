@@ -1,0 +1,19 @@
+package mavenTest.mavenTest;
+
+import java.util.Iterator;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	
+    	for (String string : args) {
+			System.out.println("args = "+string);
+		}
+        
+    }
+}

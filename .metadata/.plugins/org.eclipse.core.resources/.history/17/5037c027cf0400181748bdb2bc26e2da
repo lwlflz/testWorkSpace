@@ -1,0 +1,6 @@
+package com.liuwei.service;
+
+public interface EmpService {
+	
+	List<Emp> selectAllEmp():
+}

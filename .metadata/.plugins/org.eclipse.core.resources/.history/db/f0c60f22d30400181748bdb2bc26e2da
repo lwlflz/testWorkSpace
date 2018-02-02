@@ -1,0 +1,24 @@
+package com.liuwei;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.liuwei.service.EmpService;
+import com.liuwei.testEntity.Emp;
+
+public class TestService {
+	
+	@Test
+	public void test() {
+		ApplicationContext ac = new ClassPathXmlApplicationContext();
+		EmpService empService = (EmpService) ac.getBean("empService");
+		List<Emp> empList = empService.selectAllEmp();
+		for (Emp emp : empList) {
+			System.out.println(emp.getEname());
+			
+		}
+	}
+}

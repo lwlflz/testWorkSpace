@@ -1,0 +1,55 @@
+package com.liuwei.service.impl;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.liuwei.service.EmpService;
+
+
+
+
+
+@Service("empService")
+public class EmpServiceImpl implements EmpService{
+
+	@Autowired
+	private EmpDao empDao;
+	
+	@Override
+	public List<Emp> selectAllEmp() {
+		// TODO Auto-generated method stub
+		return empDao.getAllUser();
+	}
+
+	
+	@Override
+	@Transactional
+	public void testTransation() {
+//		TransactionTemplate transactionTemplate = new TransactionTemplate();
+//		PlatformTransactionManager tm = transactionTemplate.getTransactionManager();
+//		tm.
+		
+		ApplicationContext ac =  new ClassPathXmlApplicationContext("resource/applicationContext.xml");
+		EmpDao empDao = (EmpDao) ac.getBean("empDao");
+		
+		Emp emp = new Emp();
+		emp.setEmpno(Integer.valueOf((int) (Math.random()*100)));
+		emp.setEname("xiaoyanger");
+		emp.setHiredate(new Date());
+		emp.setJob("gongzuo");
+		emp.setSal(889.99F);
+		
+		empDao.addEmp(emp);
+		
+		throw new RuntimeException("by zero");
+	}
+	
+	
+	
+}

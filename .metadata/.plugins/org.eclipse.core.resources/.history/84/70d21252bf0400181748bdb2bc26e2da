@@ -1,0 +1,11 @@
+package com.liuwei;
+
+import org.junit.Test;
+
+public class TestDao {
+
+	@Test
+	public void test() {
+		System.out.println("test");
+	}
+}

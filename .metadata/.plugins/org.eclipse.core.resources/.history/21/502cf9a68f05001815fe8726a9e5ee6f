@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuwei.dao.EmpDao">
+  <resultMap type="com.liuwei.testEntity.Emp" id="empMap">
+        <id column="empno" property="empno"/>
+        <result column="ename" property="ename"/>
+        <result column="job" property="job"/>
+        <result column="hiredate" property="hiredate"/>
+        <result column="sal" property="sal"/>
+    </resultMap>
+
+
+    <select id="getAllUser" resultMap="empMap">
+        select * from emp
+    </select>
+<!-- 
+    <select id="getUserById" resultMap="usermap" parameterType="String">
+        select * from mybatis.user where userId= #{userId}
+    </select>
+
+
+    <insert id="insert" parameterType="com.elements.user.model.User">
+     insert into mybatis.user (UserName, UserEmail) values (
+          #{UserName}, #{UserEmail}
+     )
+    </insert>
+
+    <update id="update" parameterType="com.elements.user.model.User">
+     update mybatis.user set UserName=#{UserName},
+     UserEmail=#{UserEmail}
+     where userId= #{userId}
+    </update>
+
+    <delete id="delete" parameterType="String">
+     delete mybatis.user where userId= #{userId}
+    </delete>
+ -->
+</mapper>

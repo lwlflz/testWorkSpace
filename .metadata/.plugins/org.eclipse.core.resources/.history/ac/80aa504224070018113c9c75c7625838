@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    default-autowire="byName"   
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:context="http://www.springframework.org/schema/context"   
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd  
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+     http://www.springframework.org/schema/security
+      http://www.springframework.org/schema/security/spring-security-4.2.xsd
+    "
+    >    
+    
+  	<context:property-placeholder location="classpath:resource/jdbc.properties"/><!-- 加载配置文件 -->  
+      
+     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"   
+            destroy-method="close">  
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />  
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/maventest" />  
+        <property name="user" value="root" />  
+        <property name="password" value="root" />  
+        <property name="initialPoolSize" value="1" />  
+        <property name="minPoolSize" value="0" />  
+        <property name="maxPoolSize" value="10" />  
+        <property name="acquireIncrement" value="5" />  
+        <property name="maxIdleTime" value="10" />  
+        <property name="maxStatements" value="0" />  
+    </bean>  
+      
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">    
+        <constructor-arg index="0" ref="sqlSessionFactory" />    
+    </bean>    
+      
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <property name="mapperLocations"  
+            value="classpath*:com/liuwei/dao/impl/*Mapper.xml" />  
+    </bean>  
+  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.liuwei.dao" />  
+    </bean>  
+  
+    <context:component-scan base-package="com.liuwei.service.impl" />  
+      
+   <!--   配置spring的PlatformTransactionManager，名字为默认值  --> 
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>  
+      
+   <!--  开启事务控制的注解支持   -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>  
+ 
+ 
+ 	<!-- 配置认证管理器  -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="user" password="user" authorities="ROLE_USER"/>
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+ 
+ 
+	<!--springSecurity 权限控制  -->
+	<security:http>
+		<security:intercept-url pattern="/**" access="ROLE_USER"/>
+		 <security:form-login login-page="/login" default-target-url="welcome"/>
+		<security:logout  logout-success-url="/login?logout"/> 
+		<security:access-denied-handler error-page="/403"/>
+	</security:http>
+	
+	
+	
+	
+</beans>  

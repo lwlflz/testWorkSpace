@@ -1,0 +1,5 @@
+package com.liuwei.service.impl;
+
+public class MyUserDetailsService {
+
+}

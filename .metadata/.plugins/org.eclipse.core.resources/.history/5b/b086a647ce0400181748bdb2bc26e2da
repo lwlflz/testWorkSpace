@@ -1,0 +1,5 @@
+package com.liuwei.dao;
+
+public class EmpDao {
+
+}

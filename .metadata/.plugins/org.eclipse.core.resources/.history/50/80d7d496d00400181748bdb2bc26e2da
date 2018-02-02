@@ -1,0 +1,9 @@
+package com.liuwei;
+
+public class TestService {
+	
+	@test
+	public void test() {
+		
+	}
+}

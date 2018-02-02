@@ -1,0 +1,7 @@
+package com.liuwei.dao.impl;
+
+import com.liuwei.testEntity.Emp;
+
+public class EmpDaoImpl extends EmpDao{
+	
+}

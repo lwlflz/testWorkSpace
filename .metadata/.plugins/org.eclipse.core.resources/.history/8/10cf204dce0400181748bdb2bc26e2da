@@ -1,0 +1,5 @@
+package com.liuwei.dao;
+
+public interface EmpDao {
+	selectAllEmp();
+}

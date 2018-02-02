@@ -1,0 +1,16 @@
+package com.liuwei.dao.impl;
+
+import java.util.List;
+
+import com.liuwei.dao.EmpDao;
+import com.liuwei.testEntity.Emp;
+
+public class EmpDaoImpl implements EmpDao{
+
+	@Override
+	public List<Emp> selectAllEmp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

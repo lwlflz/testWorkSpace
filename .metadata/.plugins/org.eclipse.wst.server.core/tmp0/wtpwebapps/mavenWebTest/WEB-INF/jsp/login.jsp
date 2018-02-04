@@ -22,7 +22,7 @@
   
   <input type="hidden" name="${_csrf.parameterName}"  
          value="${_csrf.token}" />  
-  
+  ${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message }
 </form>  
 </form>  
 </body>  

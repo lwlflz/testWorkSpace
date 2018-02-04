@@ -4,3 +4,15 @@
 1517472189018	Move 'welcome.jsp' to 'jsp'
 1517472191241	Move 'index.jsp' to 'jsp'
 1517475016696	Move 'welcome.jsp' to 'WebContent'
+1517565676314	Move 'welcome.jsp' to 'jsp'
+1517565775119	Copy file
+1517639920004	Copy file
+1517646727155	Delete element
+1517646760813	Delete element
+1517650905093	Extract local variable 'context'
+1517650928338	Extract local variable 'authentication'
+1517650976216	Extract local variable 'principal'
+1517651279356	Extract local variable 'username'
+1517651282551	Extract local variable 'password'
+1517651285527	Extract local variable 'authorities'
+1517651288446	Extract local variable 'class1'

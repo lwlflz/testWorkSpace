@@ -13,8 +13,7 @@
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
      http://www.springframework.org/schema/security
       http://www.springframework.org/schema/security/spring-security-4.2.xsd
-    "
-    >    
+    ">    
     
   	<context:property-placeholder location="classpath:resource/jdbc.properties"/><!-- 加载配置文件 -->  
       
@@ -56,15 +55,7 @@
    <!--  开启事务控制的注解支持   -->
     <tx:annotation-driven transaction-manager="transactionManager"/>  
  
- <!-- 配置认证管理器  -->
- <!-- 	
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="user" password="user" authorities="ROLE_USER"/>
-			</security:user-service>
-		</security:authentication-provider>
-	</security:authentication-manager> -->
+ 
  
  
 	<!--springSecurity 权限控制  -->
@@ -76,23 +67,60 @@
 	</security:http> -->
 	
 	
-	<security:http>  
+	<security:http auto-config="true">  
         <!--路径'/admin/*'需要权限ROLE_ADMIN-->  
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>  
         <!--以"/user"开头的所有路径需要ROLE_USER权限-->  
         <security:intercept-url pattern="/user**" access="hasRole('ROLE_USER')" />  
         <!--制定自定义的登录路径为/login，登录后默认跳转/welcome-->  
-        <security:form-login login-page="/login" default-target-url="/welcome" />  
+        <security:form-login login-page="/login" default-target-url="/welcome.jsp" />  
         <!--指定使用默认登出页面，登出后跳转到/login?logout页面-->  
-        <security:logout logout-success-url="/login?logout"/>  
+        <security:logout logout-success-url="/login"/>  
         <!--对于没有权限的页面跳转到/403路径-->  
-        <security:access-denied-handler error-page="/403" />  
-        <security:csrf/>  
+        <security:access-denied-handler error-page="/accessDenied.jsp" />  
+        <security:csrf/>
+        <security:session-management invalid-session-url="/sessionTimeOut.jsp">
+        	<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/><!-- 第二次登录会让第一次登录失效  error-if-maximum-exceeded="true" 防止二次登录-->
+        </security:session-management>  
     </security:http>  
 	
-	 <security:authentication-manager>  
+<!-- 	 <security:authentication-manager>  
         <security:authentication-provider user-service-ref="myUserDetailsService"/>  
-    </security:authentication-manager>  
+    </security:authentication-manager>   -->
+	<!-- 配置认证管理器  -->
+ 	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:password-encoder hash="md5"/>
+			<!-- <security:user-service>
+				<security:user name="user" password="21232f297a57a5a743894a0e4a801fc3" authorities="ROLE_USER"/>
+			</security:user-service> -->
+			<security:jdbc-user-service data-source-ref="dataSource"/>
+		</security:authentication-provider>
+	</security:authentication-manager> 
+	<!-- 加载国际化资源文件 -->
+	<bean id="messageSource" 
+	class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<property name="basename"
+	value="classpath:resource/myMessageSource"/>
+	</bean>
+	
+	<!-- <bean id="fiterChainProxy" class="org.springframework.web.filter.DelegatingFilterProxy">
+		<security:filter-chain-map request-matcher="ant">
+			<security:filter-chain pattern="/webServices/**" filters="
+				SecurityContextPersistenceFilterWithASCFalse,
+				basicAuthenticationFilter,
+				exceptionTranslationFilter,
+				filterSecurityInterceptor"/>
+			<security:filter-chain pattern="/**" filters="
+				SecurityContextPersistenceFilterWithASCFalse,
+				formLoginFilter,
+				exceptionTranslationFiter,
+				filterSecurityInterceptor
+			"/>
+			<security:filter-chain filters=""/>
+		</security:filter-chain-map>
+	</bean> -->
 	
 	
 </beans>  

@@ -23,9 +23,8 @@ public class EmpServiceImpl implements EmpService{
 		System.out.println();
 		return empDao.getAllUser();
 	}
-
-	@Transactional
 	@Override
+	@Transactional
 	public void testTransation() {
 		// TODO Auto-generated method stub
 		Emp emp = new Emp();

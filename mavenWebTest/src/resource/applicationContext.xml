@@ -73,15 +73,15 @@
         <!--以"/user"开头的所有路径需要ROLE_USER权限-->  
         <security:intercept-url pattern="/user**" access="hasRole('ROLE_USER')" />  
         <!--制定自定义的登录路径为/login，登录后默认跳转/welcome-->  
-        <security:form-login login-page="/login" default-target-url="/welcome.jsp" />  
+        <security:form-login  login-page="/login" default-target-url="/welcome.jsp" />  
         <!--指定使用默认登出页面，登出后跳转到/login?logout页面-->  
-        <security:logout logout-success-url="/login"/>  
+        <security:logout  logout-success-url="/login"/>  
         <!--对于没有权限的页面跳转到/403路径-->  
         <security:access-denied-handler error-page="/accessDenied.jsp" />  
-        <security:csrf/>
-        <security:session-management invalid-session-url="/sessionTimeOut.jsp">
-        	<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/><!-- 第二次登录会让第一次登录失效  error-if-maximum-exceeded="true" 防止二次登录-->
-        </security:session-management>  
+        <security:csrf disabled="false"/>
+        <!-- <security:session-management invalid-session-url="/sessionTimeOut.jsp">
+        	<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>第二次登录会让第一次登录失效  error-if-maximum-exceeded="true" 防止二次登录
+        </security:session-management>   -->
     </security:http>  
 	
 <!-- 	 <security:authentication-manager>  
@@ -121,6 +121,17 @@
 			<security:filter-chain filters=""/>
 		</security:filter-chain-map>
 	</bean> -->
+	<!-- 注解的方式控制方法的权限 -->
+	<security:global-method-security 
+		secured-annotations="enabled"
+		jsr250-annotations="enabled"
+		/>
+	<!-- 配置文件的形式控制方法权限  -->	
+	<!-- <security:global-method-security>
+		<security:protect-pointcut access="ROLE_USER,ROLE_ADMIN" 
+		expression="execution(* com.liuwei.service.*.sayHello)"/>
 	
+	
+	</security:global-method-security> -->
 	
 </beans>  

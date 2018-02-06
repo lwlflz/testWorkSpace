@@ -23,6 +23,12 @@ public class Login {
 		return "login";
 	}
 	
+	@RequestMapping(value="/loginOut",method=RequestMethod.GET)
+	public String loginOut() {
+		return "login";
+	}
+	
+	
 	@RequestMapping("welcome")
 	public String welcome(Model model,HttpServletRequest req) {
 		SecurityContext context = SecurityContextHolder.getContext();

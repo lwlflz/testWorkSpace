@@ -39,7 +39,6 @@
   <servlet-mapping>
   		<servlet-name>testServlet</servlet-name>
   		<url-pattern>/demoTestServlet</url-pattern>
-  
   </servlet-mapping>
   
   
@@ -59,5 +58,11 @@
         <servlet-name>springDispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+  	
+  	<listener>
+  		<listener-class>
+  			org.springframework.security.web.session.HttpSessionEventPublisher
+  		</listener-class>
+  	</listener>
   
 </web-app>

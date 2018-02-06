@@ -24,13 +24,18 @@ public class DemoFilter implements Filter {
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		request.setAttribute("filter1", "filterValue");
+		Filter demo2 = new  Demo2Filer();
+		FilterChainDemo fcd = new FilterChainDemo();
+		fcd.doFilter(request, res);
+		System.out.println("链条执行完了");
 		chain.doFilter(req, res);
+//		demo2.doFilter(req, res, this);						
+//		chain.doFilter(req, res);
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-
 	}
 
 }

@@ -1,9 +1,0 @@
-package com.liuwei;
-
-public class Test {
-
-	@Test
-	public void test() {
-		
-	}
-}

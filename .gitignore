@@ -1,70 +1,59 @@
-#Xcode
-＃
-＃gitignore contributors：记得更新Global / Xcode.gitignore，Objective-C.gitignore和Swift.gitignore
+gradle/wrapper/gradle-wrapper.properties
 
-生成## Build
-建立/
-DerivedData /
+##----------Android----------
 
+# build
 
-##各种设置
-* .pbxuser
-！default.pbxuser
-* .mode1v3
-！default.mode1v3
-* .mode2v3
-！default.mode2v3
-* .perspectivev3
-！default.perspectivev3
-xcuserdata /
+*.apk
 
-.metadata /
+*.ap_
 
-##其他
-* .moved预留
-* .xccheckout
-* .xcscmblueprint
+*.dex
 
-## Obj-C / Swift具体
-* .hmap
-*的.ipa
-* .dSYM.zip
-* .dSYM
+*.class
 
-#CocoaPods
-＃
-＃我们建议您不要将Pods目录添加到.gitignore。然而
-＃你应该自己判断，优点和缺点在：
-＃https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-＃
-#Pods /
-＃
-＃如果要避免从Xcode工作区检入源代码，请添加此行
-＃* .xcworkspace
+bin/
 
-＃迦太基
-＃
-＃如果您想避免从Carthage依赖项中检入源代码，请添加此行。
-#Cathage / Checkouts
+gen/
 
-迦太基/编译
+build/
 
-＃ 快车道
-＃
-＃建议不要将屏幕截图存储在git repo中。相反，使用fastlane重新生成
-#Screens，只要他们需要。
-＃有关推荐设置的更多信息，请访问：
-＃https://docs.fastlane.tools/best-practices/source-control/#source-control
+# gradle
 
-FASTLANE / report.xml将
-FASTLANE / Preview.html
-FASTLANE /截图/ ** / *。PNG
-FASTLANE / test_output
+.gradle/
 
-＃代码注入
-＃
-＃在新代码注入工具之后，有一个生成的文件夹/ iOSInjectionProject
-＃https://github.com/johnno1962/injectionforxcode
+.metadata/
 
-iOSInjectionProject /
+.recommenders/
 
+gradle-app.setting
+
+!gradle-wrapper.jar
+
+build/
+
+local.properties
+
+##----------idea----------
+
+*.iml
+
+.idea/
+
+*.ipr
+
+*.iws
+
+# Android Studio Navigation editor temp files
+
+.navigation/
+
+##----------Other----------
+
+# osx
+
+*~
+
+.DS_Store
+
+gradle.properties
